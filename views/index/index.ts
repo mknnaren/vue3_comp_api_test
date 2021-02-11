@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { defineComponent, computed, useMeta, ref } from '@nuxtjs/composition-api'
+import { defineComponent, computed, onMounted, ref } from '@nuxtjs/composition-api'
 import MovieTable from '~/components/movie_table.vue'
 import MovieTablePage from '~/components/movie_table_page.vue'
+import MovieTableSearch from '~/components/movie_table_search.vue'
 
 export default defineComponent({
     components: {
         MovieTable,
-        MovieTablePage
+        MovieTablePage,
+        MovieTableSearch
     },
     props: {},
 
@@ -23,6 +25,12 @@ export default defineComponent({
             page.value = pageNo;
             getMovieList();
         }
+        function getSearchResult(searchTxt: string) {
+            movTitle.value = searchTxt;
+            page.value = 1;
+            getMovieList();
+        }
+        
         function getMovieList() {
             movieData.value.loading = true;
             axios({
@@ -42,6 +50,10 @@ export default defineComponent({
                     console.log(err);
                 });
         }
+
+        onMounted(() => {
+            getMovieList();
+        });
         
         // const filteredMovieList = computed(function () {
         //     return movieLs.value.filter(
@@ -51,6 +63,7 @@ export default defineComponent({
         return {
             getMovieList,
             getPageMovieList,
+            getSearchResult,
             movieData,
             pageData
         }

@@ -14,8 +14,9 @@
         <v-row justify="center" align="center">
             <v-col cols="12" sm="8" md="6">
                 <div class="text-center">
-                <MovieTable :movieData = "movieData"></MovieTable>
-                <MovieTablePage @show-page-list="getPageMovieList" :pageData = "pageData"></MovieTablePage>
+                    <MovieTableSearch @show-search-list="getSearchResult"></MovieTableSearch>
+                    <MovieTable :movieData = "movieData"></MovieTable>
+                    <MovieTablePage @show-page-list="getPageMovieList" :pageData = "pageData"></MovieTablePage>
                 </div>
             </v-col>
         </v-row>

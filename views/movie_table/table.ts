@@ -26,7 +26,7 @@ export default defineComponent({
         const movieHeaders = ref([
             {
                 text: 'Title',
-                align: 'start',
+                align: 'left',
                 sortable: false,
                 value: 'Title',
             },

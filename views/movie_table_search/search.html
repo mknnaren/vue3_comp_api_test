@@ -1,0 +1,12 @@
+<div>
+    <div class="text-center pt-2">
+        <v-text-field outlined label="Search" 
+        v-model="searchText" 
+        @change="showPageResults" 
+        prepend-inner-icon="mdi-magnify" 
+        :append-icon="searchText.length>0 ? 'mdi-close-circle' : ''" 
+        @click:append="clearMessage"
+        ></v-text-field>
+    </div>
+</div>
+
