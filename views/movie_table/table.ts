@@ -11,15 +11,18 @@ interface User {
 export default defineComponent({
     head: {},
     props: {
-        movieList: {
-            type: Array,
+        movieData: {
+            type: Object,
             default: null
         }
     },
 
-    setup({ movieList}, context) {
+    setup({ movieData}, context) {
         
-        console.log(movieList);
+        console.log(movieData);
+        
+        const options = ref({});
+
         const movieHeaders = ref([
             {
                 text: 'Title',
@@ -42,22 +45,16 @@ export default defineComponent({
         ]);
         
        
-        const desserts = ([
-            {
-                name: 'KitKat',
-                calories: 518,
-                fat: 26.0,
-                carbs: 65,
-                protein: 7,
-                iron: '6%',
-            },
-        ]);
-        const movTitle = ref("");
+        
         const page = ref(1);
+        const itemsPerPage = ref(10);
 
         
         return {
-            movieHeaders
+            movieHeaders,
+            options,
+            itemsPerPage,
+            page
         }
     }
 })

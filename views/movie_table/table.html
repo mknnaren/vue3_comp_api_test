@@ -1,4 +1,15 @@
 <div>
-    <v-data-table :headers="movieHeaders" :items="movieList" :items-per-page="5" class="elevation-1"></v-data-table>
+    <v-data-table 
+    :headers="movieHeaders" 
+    :items="movieData.data" 
+    
+    :page.sync="page"
+    :items-per-page="itemsPerPage"
+    hide-default-footer
+
+    
+    :loading="movieData.loading"
+    class="elevation-1"></v-data-table>
 </div>
 
+<!-- :server-items-length="movieData.total" -->
