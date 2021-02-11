@@ -1,0 +1,17 @@
+<div>
+    <v-data-table 
+    :headers="favHeaders" 
+    :items="favList" 
+    class="elevation-1">
+
+    <template v-slot:item.favourite="{ item }">
+        <v-icon v-if="!item.favourite" color="grey lighten-1">
+            mdi-star-outline
+        </v-icon>
+        <v-icon v-else color="yellow darken-3">
+            mdi-star
+        </v-icon>
+    </template>
+
+</v-data-table>
+</div>

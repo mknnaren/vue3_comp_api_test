@@ -1,24 +1,12 @@
 import { defineComponent, computed, useMeta, ref } from '@nuxtjs/composition-api'
-import AddToFav from '~/components/add_to_fav.vue'
 
 export default defineComponent({
-    components: {
-        AddToFav,
-    },
-    props: {
-        movieData: {
-            type: Object,
-            default: null
-        }
-    },
-
-    setup({ movieData}, context) {
+    setup( prop, context) {
         
-        console.log(movieData);
+        console.log(prop);
         
-        const options = ref({});
-
-        const movieHeaders = ref([
+        const favList = ref([]);
+        const favHeaders = ref([
             {
                 text: 'Title',
                 align: 'left',
@@ -37,25 +25,19 @@ export default defineComponent({
                 sortable: false,
                 value: 'imdbID',
             },
-            { 
-                text: '', 
+            {
+                text: '',
                 value: 'favourite',
                 align: 'start',
                 sortable: false,
             },
         ]);
-        
+
        
         
-        const page = ref(1);
-        const itemsPerPage = ref(10);
-
-        
         return {
-            movieHeaders,
-            options,
-            itemsPerPage,
-            page
+            favHeaders,
+            favList
         }
     }
 })

@@ -41,6 +41,9 @@ export default defineComponent({
                 .then(response => {
                     console.log(response.data);
                     response.data.page = Number(response.data.page);
+                    for (let i = 0; i < response.data.data.length; i++){
+                        response.data.data[i]["favourite"] = true;
+                    }
                     movieData.value = response.data;
                     movieData.value.loading = false;
                     const { data, ...pageObj } = response.data
