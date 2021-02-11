@@ -1,30 +1,32 @@
-import { defineComponent, watch, ref } from '@nuxtjs/composition-api'
+import { defineComponent, ref, computed, useContext} from '@nuxtjs/composition-api'
 
 export default defineComponent({
     // emits: ["show-search-list"],
     props: {
-        
+         movieItem: {
+            type: Object,
+            default: null
+        }
     },
+    async middleware({ store }) {
+        await store.dispatch('getUser');
+    },
+    setup({movieItem}, context) {
+        
+        const { app: { store } } = useContext()
 
-    setup( props, context) {
+        const theme = computed(() => store.state.favData.favList)
+
+        console.log(theme);
+        // console.log(store);
+        // console.log(store.state.favData.favList);
         
-        const searchText = ref("");
-        
-        function showPageResults(){
-            context.emit("show-search-list", searchText.value);
+        const addToFavourite = (obj: object) => {
+            console.log(obj);
         }
-        
-        const clearMessage = () => {
-            searchText.value = "";
-        }
-        
-        watch(searchText, showPageResults)
-        
        
         return {
-            searchText,
-            showPageResults,
-            clearMessage
+            addToFavourite
         }
     }
 })

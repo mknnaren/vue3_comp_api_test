@@ -42,7 +42,7 @@ export default defineComponent({
                     console.log(response.data);
                     response.data.page = Number(response.data.page);
                     for (let i = 0; i < response.data.data.length; i++){
-                        response.data.data[i]["favourite"] = true;
+                        response.data.data[i]["favourite"] = false;
                     }
                     movieData.value = response.data;
                     movieData.value.loading = false;

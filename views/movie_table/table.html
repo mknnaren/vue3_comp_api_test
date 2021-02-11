@@ -9,7 +9,12 @@
 
     
     :loading="movieData.loading"
-    class="elevation-1"></v-data-table>
+    class="elevation-1">
+    
+    <template v-slot:item.favourite="{ item }">
+        <AddToFav :movieItem="item"></AddToFav>
+    </template>
+</v-data-table>
 </div>
 
 <!-- :server-items-length="movieData.total" -->
