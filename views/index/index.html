@@ -1,0 +1,21 @@
+    <div>
+        <v-row justify="center" align="center">
+            <v-col cols="12" >
+                <v-card>
+                    <v-card-title class="headline">
+                        Movie List <v-btn small color="primary" @click="getMovieList">
+                            Refresh
+                        </v-btn>
+                    </v-card-title>
+                    
+                </v-card>
+            </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
+            <v-col cols="12" sm="8" md="6">
+                <div class="text-center">
+                <MovieTable :movieList = "filteredMovieList"></MovieTable>
+                </div>
+            </v-col>
+        </v-row>
+    </div>
