@@ -1,8 +1,13 @@
+import { find, findIndex, cloneDeep } from 'lodash';
 import axios from 'axios';
-import { defineComponent, computed, onMounted, ref } from '@nuxtjs/composition-api'
-import MovieTable from '~/components/movie_table.vue'
-import MovieTablePage from '~/components/movie_table_page.vue'
-import MovieTableSearch from '~/components/movie_table_search.vue'
+import { defineComponent, reactive, onMounted, ref } from '@nuxtjs/composition-api'
+import MovieTable from '~/components/movie/table.vue'
+import MovieTablePage from '~/components/movie/page.vue'
+import MovieTableSearch from '~/components/movie/search.vue'
+
+interface Movie {
+    imdbID: number, Title: string, favourite: boolean, Year: string 
+}
 
 export default defineComponent({
     components: {
@@ -16,11 +21,25 @@ export default defineComponent({
         const movTitle = ref("");
         const page = ref(1);
         const pageData = ref({});
+        const loading = ref(true);
+        const movieList: any = ref([]);
         const movieData = ref({
-            loading: true,
             data: [],
             total: 0
         });
+
+        console.log(context.root.$store.state.favData.favList);
+
+        function updateTable(){
+            const storedFavList: any[] = cloneDeep(context.root.$store.state.favData.favList);
+            let movList: any[] = cloneDeep(movieList.value);
+            for (let i = 0; i < movList.length; i++) {
+                movList[i]["favourite"] = !!find(storedFavList, { imdbID: movList[i].imdbID });
+            }
+            movieList.value = movList;
+        }
+
+
         function getPageMovieList(pageNo: number) {
             page.value = pageNo;
             getMovieList();
@@ -32,7 +51,10 @@ export default defineComponent({
         }
         
         function getMovieList() {
-            movieData.value.loading = true;
+            loading.value = true;
+            let storedFavList = context.root.$store.state.favData.favList;
+            let resData;
+            let movieObj;
             axios({
                 method: 'get',
                 baseURL: "https://jsonmock.hackerrank.com/api/movies/search",
@@ -40,13 +62,16 @@ export default defineComponent({
             })
                 .then(response => {
                     console.log(response.data);
-                    response.data.page = Number(response.data.page);
-                    for (let i = 0; i < response.data.data.length; i++){
-                        response.data.data[i]["favourite"] = false;
+                    resData = response.data;
+                    resData.page = Number(resData.page);
+                    for (let i = 0; i < resData.data.length; i++){
+                        movieObj = resData.data[i];
+                        resData.data[i]["favourite"] = !!find(storedFavList, { imdbID : movieObj.imdbID });
                     }
-                    movieData.value = response.data;
-                    movieData.value.loading = false;
-                    const { data, ...pageObj } = response.data
+                    movieData.value = resData;
+                    movieList.value = resData.data;
+                    loading.value = false;
+                    const { data, ...pageObj } = resData
                     pageData.value = pageObj;
                     console.log(pageData.value);
                 }, err => {
@@ -58,17 +83,16 @@ export default defineComponent({
             getMovieList();
         });
         
-        // const filteredMovieList = computed(function () {
-        //     return movieLs.value.filter(
-        //         (movieLs) => movieLs.title.includes(movTitle)
-        //     );
-        // });
+       
         return {
             getMovieList,
             getPageMovieList,
             getSearchResult,
+            updateTable,
             movieData,
-            pageData
+            movieList,
+            pageData,
+            loading
         }
     }
 })

@@ -1,10 +1,12 @@
     <div>
         <v-row justify="center" align="center">
-            <v-col cols="12" >
+            <v-col cols="12" sm="8" md="6" >
                 <v-card>
                     <v-card-title class="headline">
-                        Movie List <v-btn small color="primary" @click="getMovieList">
-                            Refresh
+                        Movie List 
+                        <v-spacer></v-spacer>
+                        <v-btn small fab color="primary" @click="getMovieList">
+                            <v-icon>mdi-refresh</v-icon>
                         </v-btn>
                     </v-card-title>
                     
@@ -15,7 +17,7 @@
             <v-col cols="12" sm="8" md="6">
                 <div class="text-center">
                     <MovieTableSearch @show-search-list="getSearchResult"></MovieTableSearch>
-                    <MovieTable :movieData = "movieData"></MovieTable>
+                    <MovieTable :movieList="movieList" :movieData = "movieData" :loading = "loading" @update-table="updateTable"></MovieTable>
                     <MovieTablePage @show-page-list="getPageMovieList" :pageData = "pageData"></MovieTablePage>
                 </div>
             </v-col>

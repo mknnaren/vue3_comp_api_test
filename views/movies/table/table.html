@@ -1,18 +1,18 @@
 <div>
     <v-data-table 
     :headers="movieHeaders" 
-    :items="movieData.data" 
+    :items="movieList" 
     
     :page.sync="page"
     :items-per-page="itemsPerPage"
     hide-default-footer
 
     
-    :loading="movieData.loading"
+    :loading="loading"
     class="elevation-1">
     
     <template v-slot:item.favourite="{ item }">
-        <AddToFav :movieItem="item"></AddToFav>
+        <AddToFav :movieItem="item" @fav-update-table="passUpdateTableEvent"></AddToFav>
     </template>
 </v-data-table>
 </div>

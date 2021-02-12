@@ -6,10 +6,8 @@
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <v-btn @click="getMovieList">Get Movie List</v-btn>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+    <v-btn to="/">Go to movie list</v-btn>
+    
   </v-app>
 </template>
 

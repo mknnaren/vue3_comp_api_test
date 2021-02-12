@@ -9,8 +9,16 @@ export default defineComponent({
 
     setup( props , context) {
         
+        const favListData = context.root.$store.state.favData.favList;
+        console.log(favListData);
+
+        function updateTable(){
+            favListData.value = context.root.$store.state.favData.favList;
+        }
+
         return {
-            
+            updateTable,
+            favListData
         }
     }
 })

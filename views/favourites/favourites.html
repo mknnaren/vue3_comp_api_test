@@ -1,9 +1,14 @@
     <div>
         <v-row justify="center" align="center">
-            <v-col cols="12" >
+            <v-col cols="12" sm="8" md="6" >
                 <v-card>
                     <v-card-title class="headline">
+                        <v-btn small fab color="primary" to="/" class="mr-3">
+                        <v-icon>mdi-chevron-left</v-icon>
+                        </v-btn>
                         Favourite Movie List 
+                        
+                        
                     </v-card-title>
                 </v-card>
             </v-col>
@@ -11,7 +16,7 @@
         <v-row justify="center" align="center">
             <v-col cols="12" sm="8" md="6">
                 <div class="text-center">
-                    <FavouriteTable ></FavouriteTable>
+                    <FavouriteTable :favListData = "favListData" @update-table="updateTable"></FavouriteTable>
                 </div>
             </v-col>
         </v-row>

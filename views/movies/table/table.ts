@@ -1,7 +1,9 @@
+// ~ts-ignore
 import { defineComponent, computed, useMeta, ref } from '@nuxtjs/composition-api'
-import AddToFav from '~/components/add_to_fav.vue'
+import AddToFav from '~/components/movie/add_to_fav.vue'
 
 export default defineComponent({
+    emits: ["update-table"],
     components: {
         AddToFav,
     },
@@ -9,10 +11,18 @@ export default defineComponent({
         movieData: {
             type: Object,
             default: null
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        movieList: {
+            type: Array,
+            default: null
         }
     },
 
-    setup({ movieData}, context) {
+    setup({ movieList, movieData}, context) {
         
         console.log(movieData);
         
@@ -50,12 +60,15 @@ export default defineComponent({
         const page = ref(1);
         const itemsPerPage = ref(10);
 
-        
+        function passUpdateTableEvent(){
+            context.emit("update-table");
+        }
         return {
             movieHeaders,
             options,
             itemsPerPage,
-            page
+            page,
+            passUpdateTableEvent
         }
     }
 })
