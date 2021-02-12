@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`search renders properly 1`] = `
+"<div>
+  <div class=\\"text-center pt-2\\">
+    <v-text-field outlined=\\"\\" label=\\"Search\\" prepend-inner-icon=\\"mdi-magnify\\" append-icon=\\"\\"></v-text-field>
+  </div>
+</div>"
+`;

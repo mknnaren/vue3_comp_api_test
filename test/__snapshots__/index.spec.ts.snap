@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index renders properly 1`] = `
+"<div>
+  <v-row justify=\\"center\\" align=\\"center\\">
+    <v-col cols=\\"12\\" sm=\\"8\\" md=\\"6\\">
+      <v-card>
+        <v-card-title class=\\"headline\\">
+          Movie List
+          <v-spacer></v-spacer>
+        </v-card-title>
+      </v-card>
+    </v-col>
+  </v-row>
+  <v-row justify=\\"center\\" align=\\"center\\">
+    <v-col cols=\\"12\\" sm=\\"8\\" md=\\"6\\"></v-col>
+  </v-row>
+</div>"
+`;

@@ -4,12 +4,12 @@ export const state = () => ({
 });
 
 export const mutations = {
-    addFav (state, data){
+    addFav(state: any, data: { imdbID: number, Title: string, favourite: boolean, Year: string }){
         if (!!!find(state.favList, { imdbID: data.imdbID })){
             state.favList.push(data);
         }
     },
-    removeFav(state, data) {
+    removeFav(state: any, data: { imdbID: number, Title: string, favourite: boolean, Year: string }) {
         console.log(data);
         console.log(findIndex(state.favList, { imdbID: data.imdbID }));
         let index = findIndex(state.favList, { imdbID: data.imdbID });
@@ -17,12 +17,12 @@ export const mutations = {
             state.favList.splice(index, 1);
         }
     },
-    clearAllFav(state, data) {
+    clearAllFav(state: any, data: { imdbID: number, Title: string, favourite: boolean, Year: string }) {
         state.favList.splice(0, state.favList.length);
     },
 
     //    ------------------------------
-    clearStorage (state){
+    clearStorage (state:any){
         for(const prop in state){
             state[prop] = null;
         }
