@@ -1,4 +1,3 @@
-// ~ts-ignore
 import { defineComponent, computed, useMeta, ref } from '@nuxtjs/composition-api'
 import AddToFav from '~/components/movie/add_to_fav.vue'
 
