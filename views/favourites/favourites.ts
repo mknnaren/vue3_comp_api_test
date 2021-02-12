@@ -1,5 +1,6 @@
 import { defineComponent, computed, onMounted, ref } from '@nuxtjs/composition-api'
 import FavouriteTable from '~/components/favourites/table.vue'
+import  favStore  from '~/global_store/favStore'
 
 export default defineComponent({
     components: {
@@ -8,12 +9,10 @@ export default defineComponent({
     props: {},
 
     setup( props , context) {
-        
-        const favListData = context.root.$store.state.favData.favList;
-        console.log(favListData);
-
+        console.log(favStore.getFavList.value);
+        const favListData = favStore.getFavList.value;
         function updateTable(){
-            favListData.value = context.root.$store.state.favData.favList;
+            favListData.value = favStore.getFavList.value;
         }
 
         return {

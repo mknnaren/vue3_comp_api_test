@@ -32,9 +32,10 @@ import { defineComponent, reactive, onMounted, ref } from '@nuxtjs/composition-a
 import MovieTable from '~/components/movie/table.vue'
 import MovieTablePage from '~/components/movie/page.vue'
 import MovieTableSearch from '~/components/movie/search.vue'
+import  favStore  from '~/global_store/favStore'
 
 interface Movie {
-    imdbID: number, Title: string, favourite: boolean, Year: string 
+    imdbID: string, Title: string, favourite: boolean, Year: string 
 }
 
 export default defineComponent({
@@ -57,7 +58,7 @@ export default defineComponent({
         });
 
         function updateTable(){
-            const storedFavList: any[] = cloneDeep(context.root.$store.state.favData.favList);
+            const storedFavList = favStore.getFavList.value;
             let movList: any[] = cloneDeep(movieList.value);
             for (let i = 0; i < movList.length; i++) {
                 movList[i]["favourite"] = !!find(storedFavList, { imdbID: movList[i].imdbID });
@@ -78,7 +79,7 @@ export default defineComponent({
         
         function getMovieList() {
             loading.value = true;
-            let storedFavList = context.root.$store.state.favData.favList;
+            let storedFavList = favStore.getFavList.value;
             let resData;
             let movieObj;
             axios({

@@ -1,4 +1,5 @@
 import { defineComponent, ref, computed, useContext} from '@nuxtjs/composition-api'
+import  favStore  from '~/global_store/favStore'
 
 export default defineComponent({
     emits: ["fav-update-table"],
@@ -12,12 +13,12 @@ export default defineComponent({
     setup({movieItem}, context) {
 
         
-        const addToFavourite = (obj: { imdbID: number, Title: string, favourite: boolean, Year: string }) => {
+        const addToFavourite = (obj: { imdbID: string, Title: string, favourite: boolean, Year: string }) => {
             console.log(obj.favourite);
             if(!obj.favourite){
-                context.root.$store.commit('favData/addFav', obj);
+                favStore.addFav(obj);
             }else{
-                context.root.$store.commit('favData/removeFav', obj);
+                favStore.removeFav(obj);
             }
             
             context.emit("fav-update-table");

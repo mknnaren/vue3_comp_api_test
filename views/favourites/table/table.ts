@@ -1,5 +1,5 @@
 import { defineComponent, computed, useMeta, ref } from '@nuxtjs/composition-api'
-
+import  favStore  from '~/global_store/favStore'
 export default defineComponent({
     emits: ["update-table"],
     props: {
@@ -40,9 +40,9 @@ export default defineComponent({
             },
         ]);
 
-        function unMarkFav(obj: { imdbID: number, Title: string, favourite: boolean, Year: string }) {
+        function unMarkFav(obj: { imdbID: string, Title: string, favourite: boolean, Year: string }) {
             console.log(obj);
-            context.root.$store.commit('favData/removeFav', obj);
+            favStore.removeFav(obj);
             context.emit("update-table");
         }
         
