@@ -11,14 +11,6 @@ export default defineComponent({
     
     setup({movieItem}, context) {
 
-        // const { app: { store } } = useContext()
-
-        // const favList = computed(() => store.state.favData.favList)
-
-        // console.log(favList);
-        
-        // console.log(store);
-        // console.log(store.state.favData.favList);
         
         const addToFavourite = (obj: { imdbID: number, Title: string, favourite: boolean, Year: string }) => {
             console.log(obj.favourite);
