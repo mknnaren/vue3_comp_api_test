@@ -4,13 +4,13 @@
         <v-card-title>
             <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
         </v-card-title>
-        <v-data-table :headers="favHeaders" :items="favListData" :search="search" class="elevation-1">
+        <v-data-table :headers="favHeaders" :items="favList" :search="search" class="elevation-1">
         
             <template v-slot:[`item.favourite`]="{ item }">
-                <div @click="unMarkFav(item)">
-                <v-icon color="red darken-3">
-                    mdi-delete
-                </v-icon>
+                <div class="rmFavDiv" @click="unMarkFav(item)">
+                    <v-icon color="red darken-3">
+                        mdi-delete
+                    </v-icon>
                 </div>
             </template>
         
@@ -23,18 +23,22 @@
 import { defineComponent, computed, useMeta, ref } from '@nuxtjs/composition-api'
 import  favStore  from '~/global_store/favStore'
 export default defineComponent({
-    emits: ["update-table"],
     props: {
-        favListData: {
+        favPropList: {
             type: Array,
             default: null
         }
     },
-    setup( prop, context) {
-        
-        console.log(prop);
+    setup( {favPropList}, context) {
+        const favList = computed(() => {
+            console.log(!!favPropList);
+            if(!!favPropList){
+                return favPropList;
+            }else{
+                return favStore.getFavList.value
+            }
+        })
         const search = ref("");
-        const favList = ref([]);
         const favHeaders = ref([
             {
                 text: 'Title',
@@ -63,9 +67,7 @@ export default defineComponent({
         ]);
 
         function unMarkFav(obj: { imdbID: string, Title: string, favourite: boolean, Year: string }) {
-            console.log(obj);
             favStore.removeFav(obj);
-            context.emit("update-table");
         }
         
         return {

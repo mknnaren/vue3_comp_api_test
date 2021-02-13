@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addToFavComp renders properly 1`] = `"<div id=\\"favStarDiv\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate fav-false mdi mdi-star-outline theme--light grey--text text--lighten-1\\"></i></div>"`;

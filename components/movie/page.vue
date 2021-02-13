@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="text-center pt-2">
-        <v-pagination v-model="pageData.page"  @input="showPageResults(pageData.page)" :length="pageData.total_pages"></v-pagination>
+        <v-pagination v-model="pageData.page" id="pagiElem"  @input="showPageResults(pageData.page)" :length="pageData.total_pages"></v-pagination>
         <v-text-field :value="pageData.per_page" label="Items per page" readonly type="number" 
             ></v-text-field>
     </div>
@@ -25,7 +25,6 @@ export default defineComponent({
     },
     setup({ pageData }, context) {
         function showPageResults(pageNo: Number){
-            console.log(pageNo);
             context.emit("show-page-list", pageNo);
         }
         return {

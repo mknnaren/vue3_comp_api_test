@@ -1,9 +1,9 @@
 <template>
-<div @click="addToFavourite(movieItem)">
-    <v-icon v-if="!movieItem.favourite" color="grey lighten-1">
+<div id="favStarDiv" ref="favStarRef" @click="addToFavourite(movieItem)">
+    <v-icon class="fav-false" v-if="!movieItem.favourite" color="grey lighten-1">
         mdi-star-outline
     </v-icon>
-    <v-icon v-else color="yellow darken-3">
+    <v-icon class="fav-true" v-else color="yellow darken-3">
         mdi-star
     </v-icon>
 </div>
@@ -22,7 +22,6 @@ export default defineComponent({
     },
     setup({movieItem}, context) {
         const addToFavourite = (obj: { imdbID: string, Title: string, favourite: boolean, Year: string }) => {
-            console.log(obj.favourite);
             if(!obj.favourite){
                 favStore.addFav(obj);
             }else{

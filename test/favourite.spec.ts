@@ -1,5 +1,6 @@
 import { mount, shallowMount, createLocalVue  } from '@vue/test-utils'
 import favourites from '@/pages/favourites.vue';
+import favTableComp from '@/components/favourites/table.vue';
 import Vuetify from 'vuetify';
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -16,24 +17,15 @@ describe('favourites', () => {
     expect(wrapper.vm).toBeTruthy()
   })
 
-  test('emit update fav table', async () => {
+  test('mounts child component properly', () => {
     const wrapper = mount(favourites, {localVue, router, vuetify})
-    wrapper.vm.$emit('update-table')
-    await wrapper.vm.$nextTick() // Wait until $emits have been handled
-    /*
-    wrapper.emitted() returns the following object:
-    {
-      foo: [[], [123]]
-    }
-    */
-    // assert event has been emitted
-    expect(wrapper.emitted()["update-table"]).toBeTruthy()
-  
-
+    // expect(wrapper.vm.$refs.favTableComp).toBeTruthy()
+    const tableComp = wrapper.findComponent(favTableComp) // => finds Bar by component instance
+    expect(tableComp.exists()).toBe(true)
   })
 
-  // test('renders properly', () => {
-  //   const wrapper = shallowMount(favourites,  {localVue, vuetify})
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+  test('renders properly', () => {
+    const wrapper = mount(favourites,  {localVue, router, vuetify})
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

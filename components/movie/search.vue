@@ -8,7 +8,7 @@
         @change="showPageResults"
         prepend-inner-icon="mdi-magnify"
         :append-icon="searchText.length > 0 ? 'mdi-close-circle' : ''"
-        @click:append="clearMessage"
+        @click:append="searchText=''"
       ></v-text-field>
     </div>
   </div>
@@ -22,14 +22,11 @@ export default defineComponent({
     function showPageResults() {
       context.emit("show-search-list", searchText.value);
     }
-    const clearMessage = () => {
-      searchText.value = "";
-    };
+    
     watch(searchText, showPageResults);
     return {
       searchText,
-      showPageResults,
-      clearMessage,
+      showPageResults
     };
   },
 });
