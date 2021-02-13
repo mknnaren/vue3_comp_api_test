@@ -2,22 +2,18 @@
 Movie list app using Vue 3.0 Composition API
 
 ## Install
-
     $ git clone https://github.com/mknnaren/jibble_assessment.git
     $ cd jibble_assessment
     $ npm install
 
 ## Start & debug
-
     $ npm run dev
-
 ## Start & watch
-
     $ npm run start
-
 ## Simple build for production
-
     $ npm run build
+## Run Unit Tests
+    $ npm test
 
 ## Languages & tools
 ### JavaScript
