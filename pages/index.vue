@@ -65,8 +65,6 @@ export default defineComponent({
             }
             movieList.value = movList;
         }
-
-
         function getPageMovieList(pageNo: number) {
             page.value = pageNo;
             getMovieList();
@@ -88,7 +86,6 @@ export default defineComponent({
                 url: `/?Title=${movTitle.value}&page=${page.value}`,
             })
                 .then(response => {
-                    console.log(response.data);
                     resData = response.data;
                     resData.page = Number(resData.page);
                     for (let i = 0; i < resData.data.length; i++){
@@ -100,7 +97,6 @@ export default defineComponent({
                     loading.value = false;
                     const { data, ...pageObj } = resData
                     pageData.value = pageObj;
-                    console.log(pageData.value);
                 }, err => {
                     console.log(err);
                 });

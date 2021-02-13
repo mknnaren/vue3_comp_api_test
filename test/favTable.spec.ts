@@ -31,8 +31,8 @@ describe('favTable', () => {
     const rmFav = wrapper.findAll(".rmFavDiv")
     await rmFav.at(0).trigger('click')
   })
-  // test('renders properly', () => {
-  //   const wrapper = mount(favTable,  {localVue, vuetify})
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+  test('renders properly', () => {
+    const wrapper = mount(favTable,  {localVue, vuetify})
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

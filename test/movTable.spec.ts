@@ -62,8 +62,8 @@ describe('movTable', () => {
   })
 
   
-  // test('renders properly', () => {
-  //   const wrapper = shallowMount(movTable,  {localVue, vuetify})
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+  test('renders properly', () => {
+    const wrapper = shallowMount(movTable,  {localVue, vuetify})
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

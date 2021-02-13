@@ -2,75 +2,67 @@
 
 exports[`favTable renders properly 1`] = `
 "<div>
-  <v-card-stub loaderheight=\\"4\\" tag=\\"div\\">
-    <v-card-title-stub>
-      <v-text-field-stub errorcount=\\"1\\" errormessages=\\"\\" messages=\\"\\" rules=\\"\\" successmessages=\\"\\" value=\\"\\" appendicon=\\"mdi-magnify\\" backgroundcolor=\\"\\" hidedetails=\\"true\\" label=\\"Search\\" loaderheight=\\"2\\" clearicon=\\"$clear\\" singleline=\\"true\\" type=\\"text\\"></v-text-field-stub>
-    </v-card-title-stub>
-    <v-data-table-stub mobilebreakpoint=\\"600\\" items=\\"\\" options=\\"[object Object]\\" sortby=\\"\\" sortdesc=\\"\\" customsort=\\"function sortItems(items, sortBy, sortDesc, locale, customSorters) {
-  if (sortBy === null || !sortBy.length) return items;
-  var stringCollator = new Intl.Collator(locale, {
-    sensitivity: 'accent',
-    usage: 'sort'
-  });
-  return items.sort(function (a, b) {
-    var _a, _b;
-
-    for (var i = 0; i < sortBy.length; i++) {
-      var sortKey = sortBy[i];
-      var sortA = getObjectValueByPath(a, sortKey);
-      var sortB = getObjectValueByPath(b, sortKey);
-
-      if (sortDesc[i]) {
-        _a = __read([sortB, sortA], 2), sortA = _a[0], sortB = _a[1];
-      }
-
-      if (customSorters &amp;&amp; customSorters[sortKey]) {
-        var customResult = customSorters[sortKey](sortA, sortB);
-        if (!customResult) continue;
-        return customResult;
-      } // Check if both cannot be evaluated
-
-
-      if (sortA === null &amp;&amp; sortB === null) {
-        continue;
-      }
-
-      _b = __read([sortA, sortB].map(function (s) {
-        return (s || '').toString().toLocaleLowerCase();
-      }), 2), sortA = _b[0], sortB = _b[1];
-
-      if (sortA !== sortB) {
-        if (!isNaN(sortA) &amp;&amp; !isNaN(sortB)) return Number(sortA) - Number(sortB);
-        return stringCollator.compare(sortA, sortB);
-      }
-    }
-
-    return 0;
-  });
-}\\" page=\\"1\\" itemsperpage=\\"10\\" groupby=\\"\\" groupdesc=\\"\\" customgroup=\\"function groupItems(items, groupBy, groupDesc) {
-  var key = groupBy[0];
-  var groups = [];
-  var current;
-
-  for (var i = 0; i < items.length; i++) {
-    var item = items[i];
-    var val = getObjectValueByPath(item, key, null);
-
-    if (current !== val) {
-      current = val;
-      groups.push({
-        name: val !== null &amp;&amp; val !== void 0 ? val : '',
-        items: []
-      });
-    }
-
-    groups[groups.length - 1].items.push(item);
-  }
-
-  return groups;
-}\\" locale=\\"en-US\\" search=\\"\\" customfilter=\\"function defaultFilter(value, search, item) {
-  return value != null &amp;&amp; search != null &amp;&amp; typeof value !== 'boolean' &amp;&amp; value.toString().toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) !== -1;
-}\\" serveritemslength=\\"-1\\" itemkey=\\"id\\" value=\\"\\" expanded=\\"\\" noresultstext=\\"$vuetify.dataIterator.noResultsText\\" nodatatext=\\"$vuetify.noDataText\\" loadingtext=\\"$vuetify.dataIterator.loadingText\\" selectablekey=\\"isSelectable\\" loaderheight=\\"4\\" headers=\\"[object Object],[object Object],[object Object],[object Object]\\" expandicon=\\"$expand\\" itemclass=\\"\\" class=\\"elevation-1\\"></v-data-table-stub>
-  </v-card-stub>
+  <div class=\\"v-card v-sheet theme--light\\">
+    <div class=\\"v-card__title\\">
+      <div class=\\"v-input v-input--hide-details theme--light v-text-field v-text-field--single-line\\">
+        <div class=\\"v-input__control\\">
+          <div class=\\"v-input__slot\\">
+            <div class=\\"v-text-field__slot\\"><label for=\\"input-58\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Search</label><input id=\\"input-58\\" type=\\"text\\"></div>
+            <div class=\\"v-input__append-inner\\">
+              <div class=\\"v-input__icon v-input__icon--append\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-magnify theme--light\\"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=\\"v-data-table elevation-1 v-data-table--has-bottom theme--light\\">
+      <div class=\\"v-data-table__wrapper\\">
+        <table>
+          <colgroup>
+            <col class=\\"\\">
+            <col class=\\"\\">
+            <col class=\\"\\">
+            <col class=\\"\\">
+          </colgroup>
+          <thead class=\\"v-data-table-header\\">
+            <tr>
+              <th role=\\"columnheader\\" scope=\\"col\\" aria-label=\\"Title\\" class=\\"text-left\\"><span>Title</span></th>
+              <th role=\\"columnheader\\" scope=\\"col\\" aria-label=\\"Year\\" class=\\"text-start\\"><span>Year</span></th>
+              <th role=\\"columnheader\\" scope=\\"col\\" aria-label=\\"IMDB ID\\" class=\\"text-start\\"><span>IMDB ID</span></th>
+              <th role=\\"columnheader\\" scope=\\"col\\" aria-label=\\"\\" class=\\"text-start\\"><span></span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class=\\"v-data-table__empty-wrapper\\">
+              <td colspan=\\"4\\">No data available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class=\\"v-data-footer\\">
+        <div class=\\"v-data-footer__select\\">Rows per page:<div class=\\"v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-text-field v-select\\">
+            <div class=\\"v-input__control\\">
+              <div role=\\"button\\" aria-haspopup=\\"listbox\\" aria-expanded=\\"false\\" aria-owns=\\"list-65\\" class=\\"v-input__slot\\">
+                <div class=\\"v-select__slot\\">
+                  <div class=\\"v-select__selections\\">
+                    <div class=\\"v-select__selection v-select__selection--comma\\">10</div><input aria-label=\\"Rows per page:\\" id=\\"input-65\\" readonly=\\"readonly\\" type=\\"text\\" aria-readonly=\\"false\\" autocomplete=\\"off\\">
+                  </div>
+                  <div class=\\"v-input__append-inner\\">
+                    <div class=\\"v-input__icon v-input__icon--append\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-menu-down theme--light\\"></i></div>
+                  </div><input type=\\"hidden\\" value=\\"10\\">
+                </div>
+                <div class=\\"v-menu\\">
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=\\"v-data-footer__pagination\\">–</div>
+        <div class=\\"v-data-footer__icons-before\\"><button type=\\"button\\" disabled=\\"disabled\\" class=\\"v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default\\" aria-label=\\"Previous page\\"><span class=\\"v-btn__content\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-chevron-left theme--light\\"></i></span></button></div>
+        <div class=\\"v-data-footer__icons-after\\"><button type=\\"button\\" disabled=\\"disabled\\" class=\\"v-btn v-btn--disabled v-btn--icon v-btn--round v-btn--text theme--light v-size--default\\" aria-label=\\"Next page\\"><span class=\\"v-btn__content\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-chevron-right theme--light\\"></i></span></button></div>
+      </div>
+    </div>
+  </div>
 </div>"
 `;

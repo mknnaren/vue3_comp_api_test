@@ -33,9 +33,7 @@ describe('addToFavComp', () => {
         }
       }})
     await wrapper.find('div#favStarDiv').trigger('click')
-    // expect(wrapper.find(".fav-true")).toBeTruthy()
     expect(wrapper.emitted()["fav-update-table"]).toBeTruthy()
-    // expect(wrapper.find('div#favStarDiv').exists()).toBe(true)
   })
   test('add to fav click triggers properly', () => {
     const wrapper = mount(addToFavComp, {localVue, vuetify,
@@ -49,10 +47,7 @@ describe('addToFavComp', () => {
       }})
     
     wrapper.find('div#favStarDiv').trigger('click')
-    // expect(wrapper.find(".fav-true")).toBeTruthy()
-    // expect(wrapper.props().movieItem.favourite).toBe('true');
     expect(wrapper.emitted()["fav-update-table"]).toBeTruthy()
-    // expect(wrapper.find('div#favStarDiv').exists()).toBe(true)
   })
 
   test('renders properly', () => {

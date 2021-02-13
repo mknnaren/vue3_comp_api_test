@@ -19,7 +19,6 @@ describe('favourites', () => {
 
   test('mounts child component properly', () => {
     const wrapper = mount(favourites, {localVue, router, vuetify})
-    // expect(wrapper.vm.$refs.favTableComp).toBeTruthy()
     const tableComp = wrapper.findComponent(favTableComp) // => finds Bar by component instance
     expect(tableComp.exists()).toBe(true)
   })
