@@ -29,10 +29,6 @@ export default defineComponent({
         AddToFav,
     },
     props: {
-        movieData: {
-            type: Object,
-            default: null
-        },
         loading: {
             type: Boolean,
             default: false
@@ -43,7 +39,7 @@ export default defineComponent({
         }
     },
 
-    setup({ movieList, movieData}, context) {
+    setup({ movieList}, context) {
         const options = ref({});
         const movieHeaders = ref([
             {

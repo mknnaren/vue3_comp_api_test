@@ -18,7 +18,7 @@
             <v-col cols="12" sm="8" md="6">
                 <div class="text-center">
                     <MovieTableSearch @show-search-list="getSearchResult"></MovieTableSearch>
-                    <MovieTable :movieList="movieList" :movieData = "movieData" :loading = "loading" @update-table="updateTable"></MovieTable>
+                    <MovieTable :movieList="movieList" :loading = "loading" @update-table="updateTable"></MovieTable>
                     <MovieTablePage @show-page-list="getPageMovieList" :pageData = "pageData"></MovieTablePage>
                 </div>
             </v-col>
@@ -34,28 +34,32 @@ import MovieTablePage from '~/components/movie/page.vue'
 import MovieTableSearch from '~/components/movie/search.vue'
 import  favStore  from '~/global_store/favStore'
 
-interface Movie {
-    imdbID: string, Title: string, favourite: boolean, Year: string 
-}
-
 export default defineComponent({
     components: {
         MovieTable,
         MovieTablePage,
         MovieTableSearch
     },
-    props: {},
-
+    props: {
+        movListProp: {
+            type: Array,
+            default: null
+        },
+      movPageProp: {
+            type: Object,
+            default: null
+        },
+      loadingProp: {
+            type: Boolean,
+            default: true
+        }
+    },
     setup( props , context) {
         const movTitle = ref("");
         const page = ref(1);
-        const pageData = ref({});
-        const loading = ref(true);
-        const movieList: any = ref([]);
-        const movieData = ref({
-            data: [],
-            total: 0
-        });
+        const pageData: any = !!!!props.movPageProp? ref(props.movPageProp) : ref({});
+        const loading =  !!props.loadingProp? ref(props.loadingProp) : ref(true);
+        const movieList:any = !!props.movListProp? ref(props.movListProp) : ref([]);
 
         function updateTable(){
             const storedFavList = favStore.getFavList.value;
@@ -74,7 +78,6 @@ export default defineComponent({
             page.value = 1;
             getMovieList();
         }
-        
         function getMovieList() {
             loading.value = true;
             let storedFavList = favStore.getFavList.value;
@@ -92,7 +95,6 @@ export default defineComponent({
                         movieObj = resData.data[i];
                         resData.data[i]["favourite"] = !!find(storedFavList, { imdbID : movieObj.imdbID });
                     }
-                    movieData.value = resData;
                     movieList.value = resData.data;
                     loading.value = false;
                     const { data, ...pageObj } = resData
@@ -101,24 +103,18 @@ export default defineComponent({
                     console.log(err);
                 });
         }
-
         onMounted(() => {
             getMovieList();
         });
-        
-       
         return {
             getMovieList,
             getPageMovieList,
             getSearchResult,
             updateTable,
-            movieData,
             movieList,
             pageData,
             loading
         }
     }
 })
-
-
 </script>

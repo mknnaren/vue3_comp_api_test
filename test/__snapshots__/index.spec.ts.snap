@@ -25,7 +25,7 @@ exports[`index renders properly 1`] = `
                   <fieldset aria-hidden=\\"true\\">
                     <legend style=\\"width: 0px;\\"><span>​</span></legend>
                   </fieldset>
-                  <div class=\\"v-text-field__slot\\"><label for=\\"input-127\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Search</label><input id=\\"input-127\\" type=\\"text\\"></div>
+                  <div class=\\"v-text-field__slot\\"><label for=\\"input-163\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Search</label><input id=\\"input-163\\" type=\\"text\\"></div>
                 </div>
                 <div class=\\"v-text-field__details\\">
                   <div class=\\"v-messages theme--light\\">
@@ -90,7 +90,7 @@ exports[`index renders properly 1`] = `
             <div class=\\"v-input v-input--is-readonly theme--light v-text-field\\">
               <div class=\\"v-input__control\\">
                 <div class=\\"v-input__slot\\">
-                  <div class=\\"v-text-field__slot\\"><label for=\\"input-142\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Items per page</label><input id=\\"input-142\\" readonly=\\"readonly\\" type=\\"number\\"></div>
+                  <div class=\\"v-text-field__slot\\"><label for=\\"input-178\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Items per page</label><input id=\\"input-178\\" readonly=\\"readonly\\" type=\\"number\\"></div>
                 </div>
                 <div class=\\"v-text-field__details\\">
                   <div class=\\"v-messages theme--light\\">

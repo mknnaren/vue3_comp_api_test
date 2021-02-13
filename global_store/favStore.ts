@@ -4,11 +4,13 @@ import { computed, ref } from "@nuxtjs/composition-api";
 const favList:any = ref([])
 
 function addFav(data:{imdbID: string, Title: string, favourite: boolean, Year: string }) { 
+    console.log("Add fav");
     if (!!!find(favList.value, { imdbID: data.imdbID })){
         favList.value.push(data);
     }
 }
 function removeFav(data: { imdbID: string, Title: string, favourite: boolean, Year: string }) {
+    console.log("Remove fav");
     console.log(data);
     console.log(findIndex(favList.value, { imdbID: data.imdbID }));
     let index = findIndex(favList.value, { imdbID: data.imdbID });
