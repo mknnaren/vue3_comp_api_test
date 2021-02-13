@@ -1,6 +1,40 @@
 # jibble_assessment
 Movie list app using Vue 3.0 Composition API
 
+## Install
+
+    $ git clone https://github.com/mknnaren/jibble_assessment.git
+    $ cd jibble_assessment
+    $ npm install
+
+## Start & debug
+
+    $ npm run dev
+
+## Start & watch
+
+    $ npm run start
+
+## Simple build for production
+
+    $ npm run build
+
+## Languages & tools
+### JavaScript
+- TypeScript
+### JS Frameworks
+- Vue.js
+- Nuxt.js
+- Vue Composition API plugin
+- Vue-Router
+###  UI frameworks
+- Vuetify
+###  Unit testing frameworks
+- Jest
+- Vue Test Utils
+### HTTP client
+- Axios
+
 ## Packages used
 This repository has used the following packages:
 
